@@ -1,6 +1,6 @@
 import "./Home.css";
 import { Container, FormControl, InputGroup, Row } from "react-bootstrap";
-import FoodTable from "../food-table/FoodTable";
+import FoodTable from "../foods/food-table/FoodTable";
 import { useEffect, useMemo, useState } from "react";
 import { getAll } from "../../services/foods-service";
 
