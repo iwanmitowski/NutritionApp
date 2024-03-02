@@ -26,5 +26,12 @@ export function createFood(food) {
 			throw new Error(foodsConstants.INVALID_VALUE);
 	}
 
+	if (!food.kcal) {
+		food.kcal = 
+			food.fat * foodsConstants.FATS_DEFAULT_VALUE +
+			food.protein * foodsConstants.PROTEIN_DEFAULT_VALUE +
+			food.carbs * foodsConstants.CARBS_DEFAULT_VALUE;
+	}
+
   return axios.post(apiUrl, food);
 }

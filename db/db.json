@@ -1,7 +1,7 @@
 {
   "foods": [
     {
-      "id": 1,
+      "id": "6b8a4a31-3498-4018-b317-d94149599c48",
       "description": "Burger",
       "kcal": 295,
       "protein": 17,
@@ -9,7 +9,7 @@
       "carbs": 29
     },
     {
-      "id": 2,
+      "id": "6b8a4a31-3498-4018-b317-d94149599c47",
       "description": "Pizza",
       "kcal": 266,
       "protein": 11,
@@ -17,7 +17,7 @@
       "carbs": 33
     },
     {
-      "id": 3,
+      "id": "6b8a4a31-3498-4018-b317-d94149599c46",
       "description": "Pasta",
       "kcal": 131,
       "protein": 5,
@@ -25,7 +25,7 @@
       "carbs": 25
     },
     {
-      "id": 4,
+      "id": "6b8a4a31-3498-4018-b317-d94149599c45",
       "description": "Salad",
       "kcal": 152,
       "protein": 2,
@@ -33,7 +33,7 @@
       "carbs": 14
     },
     {
-      "id": 5,
+      "id": "6b8a4a31-3498-4018-b317-d94149599c44",
       "description": "Chicken",
       "kcal": 165,
       "protein": 31,
@@ -41,7 +41,7 @@
       "carbs": 0
     },
     {
-      "id": 6,
+      "id": "6b8a4a31-3498-4018-b317-d94149599c43",
       "description": "Salmon",
       "kcal": 206,
       "protein": 22,
@@ -49,7 +49,7 @@
       "carbs": 0
     },
     {
-      "id": 7,
+      "id": "6b8a4a31-3498-4018-b317-d94149599c42",
       "description": "Oatmeal",
       "kcal": 158,
       "protein": 6,

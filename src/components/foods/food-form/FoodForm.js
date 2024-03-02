@@ -86,6 +86,16 @@ export function FoodForm(props) {
             onChange={onInputChange}
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="name">
+          <Form.Label>Kcal</Form.Label>
+          <Form.Control
+            type="number"
+            name="kcal"
+            value={food.kcal}
+            placeholder="Enter Kcal"
+            onChange={onInputChange}
+          />
+        </Form.Group>
         <Button variant="primary" type="submit">
           Add Food
         </Button>
