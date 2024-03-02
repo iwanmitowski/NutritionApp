@@ -1,0 +1,53 @@
+import { Button, Table } from "react-bootstrap";
+
+export default function FoodTable({ isFiltered, foods }) {
+  return (
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          {isFiltered && <th>Action</th>}
+          <th>Description</th>
+          <th>Kcal</th>
+          <th>Protein (g)</th>
+          <th>Fat (g)</th>
+          <th>Carbs (g)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {foods.map((food, index) => (
+          <tr key={index}>
+            {isFiltered && (
+              <td>
+                <Button variant="outline-secondary">View</Button>
+              </td>
+            )}
+            <td>{food.description}</td>
+            <td>{food.kcal}</td>
+            <td>{food.protein}</td>
+            <td>{food.fat}</td>
+            <td>{food.carbs}</td>
+          </tr>
+        ))}
+        <tr>
+          <td colSpan={isFiltered ? 2 : 0}>Total</td>
+          {isFiltered && (
+            <>
+              <td>
+                {+foods.reduce((acc, food) => acc + food.kcal, 0).toFixed(2)}
+              </td>
+              <td>
+                {+foods.reduce((acc, food) => acc + food.protein, 0).toFixed(2)}
+              </td>
+              <td>
+                {+foods.reduce((acc, food) => acc + food.fat, 0).toFixed(2)}
+              </td>
+              <td>
+                {+foods.reduce((acc, food) => acc + food.carbs, 0).toFixed(2)}
+              </td>
+            </>
+          )}
+        </tr>
+      </tbody>
+    </Table>
+  );
+}
