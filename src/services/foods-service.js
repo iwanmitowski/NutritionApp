@@ -3,6 +3,10 @@ import { foodsConstants, globalConstants } from "../utils/constants";
 
 const apiUrl = globalConstants.API_URL + "foods";
 
+export async function getById(id) {
+	return axios.get(`${apiUrl}?id=${id}`);
+}
+
 export async function getAll() {
 	let foods = (await axios.get(apiUrl)).data;
 	return foods;

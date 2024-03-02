@@ -1,6 +1,9 @@
 import { Button, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function FoodTable({ isFiltered, foods, selectFood, removeSelected }) {
+  const navigate = useNavigate();
+  
   return (
     <Table striped bordered hover>
       <thead>
@@ -18,7 +21,12 @@ export default function FoodTable({ isFiltered, foods, selectFood, removeSelecte
           <tr key={index} onClick={() => !isFiltered && selectFood(food.id)}>
             {isFiltered && (
               <td>
-                <Button variant="outline-secondary">View</Button>
+                <Button 
+                  variant="outline-secondary"
+                  onClick={() => navigate(`/details/${food.id}`)}
+                >
+                  View
+                </Button>
                 <Button 
 									className="mx-2"
 									variant="outline-danger"
