@@ -1,15 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import "./Home.css";
-import Table from 'react-bootstrap/Table';
-import { Container, FormControl, InputGroup, Row, Button } from "react-bootstrap";
+import { Container, FormControl, InputGroup, Row } from "react-bootstrap";
 import FoodTable from "../food-table/FoodTable";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getAll } from "../../services/foods-service";
 
 export default function Home() {
-  const navigate = useNavigate();
-
+  const [searchTerm, setSearchTerm] = useState();
   const [foods, setFoods] = useState([]);
+  const [filteredFoods, setFilteredFoods] = useState([]);
 
   useEffect(() => {
     getAll()
@@ -18,23 +16,59 @@ export default function Home() {
     })
   }, [])
 
+  const selectFood = (id) => {
+    setFilteredFoods((prevFoods) => {
+      const isFiltered = prevFoods.some(x => x.id === id) 
+      if (isFiltered) {
+        return prevFoods;
+      }
+
+      const newFilteredFood = foods.find(f => f.id === id);
+      return [
+        ...prevFoods,
+        newFilteredFood,
+      ]
+    });
+  };
+
+  const removeSelected = (id) => {
+    setFilteredFoods((prevFoods) => prevFoods.filter(x => x.id !== id));
+  }
+
+  const onInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const visibleFoods = useMemo(() => {
+    return searchTerm
+      ? foods.filter(f => f.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      : foods;
+  }, [searchTerm, foods]);
+
   return (
     <Container>
       <Row>
-        <FoodTable isFiltered foods={foods}/>
+        <FoodTable isFiltered foods={filteredFoods} removeSelected={removeSelected}/>
       </Row>
       <Row>
         <InputGroup className="mb-3">
+          <InputGroup.Text>
+            Search                      
+          </InputGroup.Text>
           <FormControl
-            placeholder="Search for a food"
-            aria-label="Search for a food"
+            value={searchTerm}
+            placeholder="Search for a food by typing..." 
+            aria-label="Search for a food by typing..."
             aria-describedby="basic-addon2"
+            onChange={onInputChange}
           />
-          <Button variant="outline-secondary">Search</Button>
         </InputGroup>
       </Row>
       <Row>
-        <FoodTable foods={foods}/>
+        <FoodTable 
+          foods={visibleFoods} 
+          selectFood={selectFood}
+        />
       </Row>
     </Container>
   );
