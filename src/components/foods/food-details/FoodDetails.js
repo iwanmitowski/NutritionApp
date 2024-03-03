@@ -17,8 +17,10 @@ export function FoodDetails(props) {
         try {
           debugger;
           const res = await getById(params.id);
+          const info = await getWikipediaInfo(res.data[0].description);
           setFood({
             ...res.data[0],
+            info,
           });
     
         } catch (error) {
@@ -91,15 +93,13 @@ export function FoodDetails(props) {
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Information</Form.Label>
           <Form.Control
-            text="text"
+            as="textarea"
             name="info"
+            rows={4}
             value={food.info}
             disabled
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Add Food
-        </Button>
       </Form>
     </div>
   );
